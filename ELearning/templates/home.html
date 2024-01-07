@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">eLearning</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Quiz</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Leaderboard</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Other
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Blog</a></li>
+              <li><a class="dropdown-item" href="#">About</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Downloads</a></li>
+            </ul>
+          </li>
+          
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+          <a href="#" class="btn btn-primary ms-2">Login</a>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container text-center my-4">
+    <h1 class="display-5 fw-bold my-2">Welcome to eLearning</h1>
+    <p class="fs-3">Unlock your genius: Bite-sized quizzes for big-time learning.</p>
+  <div class="d-inline-flex gap-2 mb-5">
+    <a href="{% url 'takeQuiz' %}" class="d-inline-flex align-items-center btn btn-primary btn-lg px-4">
+      Take a Quiz
+    </a>
+    <a href="{% url 'register' %}" class="btn btn-outline-secondary btn-lg px-4">
+      Sign Up
+    </a>
+  </div>
+    </div>
+
+    <div class="container text-center">
+      <h1 class="display-4 text-center my-5">Leaderboard</h1>
+      <div class="row">
+        <div class="col-lg-4 position-relative mb-4">
+          <img class="img-fluid" src="{% static 'images/user.png' %}" alt="user-profile" width="150" height="150">
+          <span class="position-absolute top-0 start-90 translate-middle badge rounded-pill bg-success">1</span>
+          <h2 class="fw-normal">@pratiksha</h2>
+          <p>Some representative placeholder content for the three columns of text below the carousel.</p>
+          <p><a class="btn btn-secondary" href="{% url 'profile' %}">View Profile »</a></p>
+        </div><!-- /.col-lg-4 -->
+
+        <div class="col-lg-4 position-relative mb-4">
+          <img class="img-fluid" src="{% static 'images/user.png' %}" alt="user-profile" width="150" height="150">
+          <span class="position-absolute top-0 start-90 translate-middle badge rounded-pill bg-success">2</span>
+          <h2 class="fw-normal">@pratiksha</h2>
+          <p>Some representative placeholder content for the three columns of text below the carousel.</p>
+          <p><a class="btn btn-secondary" href="{% url 'profile' %}">View Profile »</a></p>
+        </div><!-- /.col-lg-4 -->
+
+        <div class="col-lg-4 position-relative mb-4">
+          <img class="img-fluid" src="{% static 'images/user.png' %}" alt="user-profile" width="150" height="150">
+          <span class="position-absolute top-0 start-90 translate-middle badge rounded-pill bg-success">3</span>
+          <h2 class="fw-normal">@pratiksha</h2>
+          <p>Some representative placeholder content for the three columns of text below the carousel.</p>
+          <p><a class="btn btn-secondary" href="{% url 'profile' %}">View Profile »</a></p>
+        </div><!-- /.col-lg-4 -->
+        
+      </div>
+    </div>
+
+
+
+
+
+    <div class="container">
+      <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Contact</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Feedback</a></li>
+        </ul>
+        <p class="text-center text-body-secondary">© 2024 eLearning</p>
+      </footer>
+    </div>
+
+
+    
+
+
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
