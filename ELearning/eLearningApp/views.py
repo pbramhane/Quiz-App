@@ -12,3 +12,9 @@ def register(request):
 
 def profile(request):
     return render(request, 'profile.html')
+
+def quiz(request):
+    return render(request, 'quiz.html')
+
+def userlogin(request):
+    return render(request, 'login.html')

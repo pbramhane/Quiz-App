@@ -41,7 +41,7 @@
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
-          <a href="#" class="btn btn-primary ms-2">Login</a>
+          <a href="{% url 'login' %}" class="btn btn-primary ms-2">Login</a>
         </form>
       </div>
     </div>
@@ -52,9 +52,99 @@
 
   <div class="container">
     <div class="d-flex">
-        <a href="{% url 'takeQuiz' %}" class="btn btn-dark">All Quiz</a>
-        <a href="{% url 'takeQuiz' %}" class="btn btn-dark">Python</a>
-        <a href="{% url 'takeQuiz' %}" class="btn btn-dark">SQL</a>
+        <a href="{% url 'takeQuiz' %}" class="btn btn-dark me-2">All Quiz</a>
+        <a href="{% url 'takeQuiz' %}" class="btn btn-dark me-2">Python</a>
+        <a href="{% url 'takeQuiz' %}" class="btn btn-dark me-2">SQL</a>
+    </div>
+  </div>
+
+  <form class="container d-flex my-4" role="search">
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <a href="#" type="submit" class="btn btn-primary ms-2">Search</a>
+  </form>
+
+
+  <div class="container">
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <div class="col">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h4>Python Quiz</h4>
+            <p class="card-text">Total Questions - 10</p>
+            <p class="card-text">This is a wider card with supporting text below as a natural...</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="{% url 'quiz' %}" type="button" class="btn btn-sm btn-outline-success">Start Quiz</a>
+              </div>
+              <small class="text-body-secondary">January 08, 2024 9:00AM</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h4>Python Quiz</h4>
+            <p class="card-text">Total Questions - 10</p>
+            <p class="card-text">This is a wider card with supporting text below as a natural...</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="{% url 'quiz' %}" type="button" class="btn btn-sm btn-outline-success">Start Quiz</a>
+              </div>
+              <small class="text-body-secondary">January 08, 2024 9:00AM</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h4>Python Quiz</h4>
+            <p class="card-text">Total Questions - 10</p>
+            <p class="card-text">This is a wider card with supporting text below as a natural...</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-success">Start Quiz</button>
+              </div>
+              <small class="text-body-secondary">January 08, 2024 9:00AM</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h4>Python Quiz</h4>
+            <p class="card-text">Total Questions - 10</p>
+            <p class="card-text">This is a wider card with supporting text below as a natural...</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-success">Start Quiz</button>
+              </div>
+              <small class="text-body-secondary">January 08, 2024 9:00AM</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h4>Python Quiz</h4>
+            <p class="card-text">Total Questions - 10</p>
+            <p class="card-text">This is a wider card with supporting text below as a natural...</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-success">Start Quiz</button>
+              </div>
+              <small class="text-body-secondary">January 08, 2024 9:00AM</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      
     </div>
   </div>
 
