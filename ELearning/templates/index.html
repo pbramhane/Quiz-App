@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+  {% block content %}
+  {% load static %}
+
+  <div class="container text-center my-4">
+    <h1 class="display-5 fw-bold my-2">Welcome to eLearning</h1>
+    <p class="fs-3">Unlock your genius: Bite-sized quizzes for big-time learning.</p>
+  <div class="d-inline-flex gap-2 mb-5">
+    <a href="{% url 'takeQuiz' %}" class="d-inline-flex align-items-center btn btn-primary btn-lg px-4">
+      Take a Quiz
+    </a>
+    <a href="{% url 'register' %}" class="btn btn-outline-secondary btn-lg px-4">
+      Sign Up
+    </a>
+  </div>
+    </div>
+
+    <div class="container text-center">
+      <h1 class="display-4 text-center my-5">Leaderboard</h1>
+      <div class="row">
+        <div class="col-lg-4 position-relative mb-4">
+          <img class="img-fluid" src="{% static 'images/user.png' %}" alt="user-profile" width="150" height="150">
+          <span class="position-absolute top-0 start-90 translate-middle badge rounded-pill bg-success">1</span>
+          <h2 class="fw-normal">@pratiksha</h2>
+          <p>Some representative placeholder content for the three columns of text below the carousel.</p>
+          <p><a class="btn btn-secondary" href="{% url 'profile' %}">View Profile »</a></p>
+        </div><!-- /.col-lg-4 -->
+
+        <div class="col-lg-4 position-relative mb-4">
+          <img class="img-fluid" src="{% static 'images/user.png' %}" alt="user-profile" width="150" height="150">
+          <span class="position-absolute top-0 start-90 translate-middle badge rounded-pill bg-success">2</span>
+          <h2 class="fw-normal">@pratiksha</h2>
+          <p>Some representative placeholder content for the three columns of text below the carousel.</p>
+          <p><a class="btn btn-secondary" href="{% url 'profile' %}">View Profile »</a></p>
+        </div><!-- /.col-lg-4 -->
+
+        <div class="col-lg-4 position-relative mb-4">
+          <img class="img-fluid" src="{% static 'images/user.png' %}" alt="user-profile" width="150" height="150">
+          <span class="position-absolute top-0 start-90 translate-middle badge rounded-pill bg-success">3</span>
+          <h2 class="fw-normal">@pratiksha</h2>
+          <p>Some representative placeholder content for the three columns of text below the carousel.</p>
+          <p><a class="btn btn-secondary" href="{% url 'profile' %}">View Profile »</a></p>
+        </div><!-- /.col-lg-4 -->
+        
+      </div>
+    </div>
+
+
+
+{% endblock %}
+
+
+
+    
+
+
+
+    
