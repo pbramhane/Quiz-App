@@ -1,102 +1,55 @@
 {% extends 'base.html' %}
 
+{% block title %}All Quizzes | Quiz App{% endblock title %}
+
   {% block content %}
+  {% load static %}
 
 
   <h1 class="display-4 text-center my-5">All Quizzes</h1>
 
   <div class="container">
     <div class="d-flex">
-        <a href="{% url 'takeQuiz' %}" class="btn btn-dark me-2">All Quiz</a>
-        <a href="{% url 'takeQuiz' %}" class="btn btn-dark me-2">Python</a>
-        <a href="{% url 'takeQuiz' %}" class="btn btn-dark me-2">SQL</a>
+        <a href="{% url 'all_quiz' %}" class="btn btn-dark me-2">All Quiz</a>
+        {% for category in categories %}
+        <a href="{% url 'search' category.name %}" class="btn btn-dark me-2">{{ category.name }}</a>
+        {% endfor %}
     </div>
   </div>
 
-  <form class="container d-flex my-4" role="search">
-    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-    <a href="#" type="submit" class="btn btn-primary ms-2">Search</a>
-  </form>
+  <form class="container d-flex my-4" role="search" method="get" action="{% url 'search' category=' ' %}" >
+		<input name="q" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+		<button href="#" type="submit" class="btn btn-primary ms-2">Search</button>
+	</form>
 
 
   <div class="container">
 
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      {% if quizzes|length > 0 %}
+      {% for quiz in quizzes %}
       <div class="col">
         <div class="card shadow-sm">
           <div class="card-body">
-            <h4>Python Quiz</h4>
+            <h4>{{ quiz.title }}</h4>
             <p class="card-text">Total Questions - 10</p>
-            <p class="card-text">This is a wider card with supporting text below as a natural...</p>
+            <p class="card-text">{{ quiz.description |truncatewords:7 }}</p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
                 <a href="{% url 'quiz' %}" type="button" class="btn btn-sm btn-outline-success">Start Quiz</a>
               </div>
-              <small class="text-body-secondary">January 08, 2024 9:00AM</small>
+              <small class="text-body-secondary">{{ quiz.created_at |timesince }} ago</small>
             </div>
           </div>
         </div>
       </div>
-      <div class="col">
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <h4>Python Quiz</h4>
-            <p class="card-text">Total Questions - 10</p>
-            <p class="card-text">This is a wider card with supporting text below as a natural...</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <a href="{% url 'quiz' %}" type="button" class="btn btn-sm btn-outline-success">Start Quiz</a>
-              </div>
-              <small class="text-body-secondary">January 08, 2024 9:00AM</small>
-            </div>
-          </div>
-        </div>
+      {% endfor %}
+      {% else %}
+      <div class="col-md-12">
+        <p class="text-center text-danger fs-5">There is no quiz available for this category.</p>
       </div>
-      <div class="col">
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <h4>Python Quiz</h4>
-            <p class="card-text">Total Questions - 10</p>
-            <p class="card-text">This is a wider card with supporting text below as a natural...</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-success">Start Quiz</button>
-              </div>
-              <small class="text-body-secondary">January 08, 2024 9:00AM</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <h4>Python Quiz</h4>
-            <p class="card-text">Total Questions - 10</p>
-            <p class="card-text">This is a wider card with supporting text below as a natural...</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-success">Start Quiz</button>
-              </div>
-              <small class="text-body-secondary">January 08, 2024 9:00AM</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <h4>Python Quiz</h4>
-            <p class="card-text">Total Questions - 10</p>
-            <p class="card-text">This is a wider card with supporting text below as a natural...</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-success">Start Quiz</button>
-              </div>
-              <small class="text-body-secondary">January 08, 2024 9:00AM</small>
-            </div>
-          </div>
-        </div>
-      </div>
+      {% endif %}
+      
       
 
       

@@ -4,8 +4,7 @@ from django.shortcuts import render
 def index(request):
     return render(request, 'index.html')
 
-def takeQuiz(request):
-    return render(request, 'allQuiz.html')
+
 
 """ def register(request):
     return render(request, 'register.html') """

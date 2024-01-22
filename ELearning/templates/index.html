@@ -9,7 +9,7 @@
     <h1 class="display-5 fw-bold my-2">Welcome to eLearning</h1>
     <p class="fs-3">Unlock your genius: Bite-sized quizzes for big-time learning.</p>
   <div class="d-inline-flex gap-2 mb-5">
-    <a href="{% url 'takeQuiz' %}" class="d-inline-flex align-items-center btn btn-primary btn-lg px-4">
+    <a href="{% url 'all_quiz' %}" class="d-inline-flex align-items-center btn btn-primary btn-lg px-4">
       Take a Quiz
     </a>
     {% if user.is_authenticated %}
