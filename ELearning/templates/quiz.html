@@ -1,185 +1,144 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-</head>
-<body>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-    <div class="container">
-      <a class="navbar-brand" href="#">eLearning</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Quiz</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Leaderboard</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Other
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Blog</a></li>
-              <li><a class="dropdown-item" href="#">About</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Downloads</a></li>
-            </ul>
-          </li>
-          
-        </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-          <a href="{% url 'login' %}" class="btn btn-primary ms-2">Login</a>
-        </form>
-      </div>
-    </div>
-  </nav>
+{% extends 'base.html' %}
+
+{% block title %}{{quiz.title}} | Quiz App{% endblock title %}
+
+  {% block content %}
+  {% load static %}
 
 
-  <h1 class="display-4 text-center my-5">Python Quiz - (10)</h1>
-  <p class="fs-4 text-center">These are the Questions</p>
+  <h1 class="display-4 text-center my-5">{{quiz.title}} - ({{quiz.question_set.all |length}})</h1>
+  <p class="fs-4 text-center">{{quiz.description}}</p>
   <div class="container">
     <div class="d-flex justify-content-between">
-        <span class="fs-5">January 08, 2024 9:00AM</span>
-        <span class="fs-5">10:00</span>
+        <span class="fs-5">{{quiz.created_at}}</span>
+        <span class="fs-5" id="timer">10:00</span>
     </div>
+
+    {% for message in messages %}
+        <div id="message-div">
+            <h4 class="text-center text-success">{{message}}</h4>
+        </div>
+        {% endfor %}
 
     <div class="questions my-4">
-        <div class="card mb-2">
+      {% for question in quiz.question_set.all %}
+        <div class="card mb-2 question">
             <div class="card-header fw-bold">
-              Question 1
+              Question {{forloop.counter}}
             </div>
             <div class="card-body">
-                <p class="card-text">What is Python?</p>
+                <p class="card-text">{{ question.text }}</p>
+                {% for option in question.choice_set.all %}
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">
-                  Option 1
+              <label class="form-check-label" for="{{option.id}}">
+                <input class="form-check-input" value="{{option.text}}" type="radio" name="{{option.question.id}}" id="{{option.id}}">
+                  {{option.text}}
                 </label>
+                {% if option.is_correct %}
+                <span class="visually-hidden correct-answer">{{option.text}}</span>
+                {% endif %}
               </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                  Option 2
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                <label class="form-check-label" for="flexRadioDefault3">
-                  Option 3
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
-                <label class="form-check-label" for="flexRadioDefault4">
-                  Option 4
-                </label>
-              </div>
+              {% endfor %}
+              
             </div>
           </div>
+          {% endfor %}
 
-          <div class="card mb-2">
-            <div class="card-header fw-bold">
-              Question 1
-            </div>
-            <div class="card-body">
-                <p class="card-text">What is Python?</p>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">
-                  Option 1
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                  Option 2
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                <label class="form-check-label" for="flexRadioDefault3">
-                  Option 3
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
-                <label class="form-check-label" for="flexRadioDefault4">
-                  Option 4
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <div class="card mb-2">
-            <div class="card-header fw-bold">
-              Question 1
-            </div>
-            <div class="card-body">
-                <p class="card-text">What is Python?</p>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">
-                  Option 1
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                  Option 2
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                <label class="form-check-label" for="flexRadioDefault3">
-                  Option 3
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
-                <label class="form-check-label" for="flexRadioDefault4">
-                  Option 4
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <button type="submit" class="btn btn-primary">Submit the Quiz</button>
     </div>
-    
+    <form action="" method="post" id="quiz-form">
+      {% csrf_token %}
+      <!-- hidden input field for score -->
+      <input type="hidden" name="score" value="0" id="user-score">
+
+      <!-- submit button -->
+      <button type="submit" class="btn btn-primary" id="submit-button">Submit the quiz</button>
+  </form>
 
   </div>
+
+  <script>
+    // Elements
+    var submitButton = document.getElementById("submit-button");
+    var timerSpan = document.getElementById("timer");
+    var quizForm = document.getElementById("quiz-form");
+    var questions = document.querySelectorAll(".question");
+    var userScoreInput = document.getElementById("user-score");
+
+    quizDuration = (questions.length) * 60; // convert in seconds
+    
+    // Update Timer
+    function updateTimer() {
+        var minutes = Math.floor(quizDuration / 60);
+        var seconds = quizDuration % 60;
+
+        timerSpan.innerText = minutes + "m" + seconds + 's';
+
+        // Check if the time ended
+        if (quizDuration <= 0) {
+            // Automatically Submit the quiz
+            clearTimeout(quizTimerId);
+            submitQuiz();
+        } else if (document.getElementById("message-div")) {
+            clearTimeout(quizTimerId);
+            highlightCorrectAnswers();
+        } else {
+            // decrement the timer value by 1s
+            quizDuration--;
+        }
+    }
+
+    // Function to submit the quiz
+    function submitQuiz() {
+        // Calculate the score
+        calculateScore();
+
+        // Submit the quiz
+        quizForm.submit();
+    }
+
+    // Check right answer and then calculate the score
+    function calculateScore() {
+        var score = 0;
+
+        // Loop through each question
+        questions.forEach(question => {
+            var selectedInput = question.querySelector('input:checked');
+            var correctAnswer = question.querySelector(".correct-answer").innerText;
+
+            // Check if the answer is correct or not
+            if (selectedInput && selectedInput.value === correctAnswer) {
+                score += 1;
+            }
+        });
+
+        // Update the hidden input field with score in form
+        userScoreInput.value = score;
+    }
+
+    // highlight correct answer while showing result
+    function highlightCorrectAnswers() {
+        questions.forEach(question => {
+            var correctAnswer = question.querySelector(".correct-answer");
+            correctAnswer.previousElementSibling.querySelector("input").classList.add("bg-success");
+            correctAnswer.previousElementSibling.classList.add("fw-bold");
+        });
+
+        // disable submit button
+        submitButton.disabled = true;
+
+        // disabel all options
+        var options = document.querySelectorAll(".form-check-input");
+        options.forEach(option => {
+            option.disabled = true;
+        });
+    }
+
+    // Attach Event Listener to Submit button
+    submitButton.addEventListener("click", submitQuiz);
+
+    // Timer Interval
+    quizTimerId = setInterval(updateTimer, 1000);
+</script>
 
   
-
-   <div class="container">
-    <footer class="py-3 my-4">
-      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Contact</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Feedback</a></li>
-      </ul>
-      <p class="text-center text-body-secondary">© 2024 eLearning</p>
-    </footer>
-  </div>
-
-
-
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-</body>
-</html>
+{% endblock %}
