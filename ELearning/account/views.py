@@ -3,6 +3,7 @@ from .forms import CreateUserForm, LoginForm
 from django.contrib.auth.models import auth, User
 from django.contrib.auth import authenticate, login, logout
 from .models import Profile
+from quiz.models import QuizSubmission
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -56,8 +57,16 @@ def profile(request, username):
     user_object = User.objects.get(username=username)
     user_profile = Profile.objects.get(user=user_object)
 
+    #user_object2 = User.objects.get(username=username)
+    #user_profile2 = Profile.objects.get(user=user_object2)
+
+    submissions = QuizSubmission.objects.filter(user= user_object)
+
+
+
     context = {
         'user_profile': user_profile,
+        'submissions': submissions,
     }
     return render(request, 'profile.html', context)
 
@@ -118,3 +127,4 @@ def deleteProfile(request):
         return redirect('logout')
 
     return render(request, 'confirm.html')
+

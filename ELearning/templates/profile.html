@@ -48,30 +48,21 @@
                       </tr>
                     </thead>
                     <tbody>
+                      {% for submission in submissions %}
                       <tr>
-                        <th scope="row">1</th>
-                        <td>Python</td>
-                        <td>9/10</td>
-                        <td>January 07, 2024 9:00PM</td>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td title="{{submission.quiz.title}}">{{ submission.quiz.title|truncatewords:4 }}</td>
+                        <td>{{ submission.score }}/{{ submission.quiz.question_set.all|length }}</td>
+                        <td>{{ submission.submitted_at|timesince }} ago</td>
                       </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Python</td>
-                        <td>9/10</td>
-                        <td>January 07, 2024 9:00PM</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Python</td>
-                        <td>9/10</td>
-                        <td>January 07, 2024 9:00PM</td>
-                      </tr>
+                      {% endfor %}
                     </tbody>
                   </table>
             </div>
+            <!--
             <div class="col">
                 <h3>@{{user_profile.user.username}}'s performance</h3>
-            </div>
+            </div> -->
         </div>
       </div>
   </div>
