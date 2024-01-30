@@ -15,6 +15,7 @@ class Profile(models.Model):
         ('Other', 'Other')
     )
     gender = models.CharField(max_length=6, choices=GENDER, blank=True, null=True)
+    is_premium = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username

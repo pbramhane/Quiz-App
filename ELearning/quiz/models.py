@@ -92,6 +92,7 @@ class UserRank(models.Model):
         return f'{self.user.username}, {self.rank}'
     
 
+# receiver is a django signal
 @receiver(post_save, sender=QuizSubmission)
 def update_leaderboard(sender, instance, created, **kwargs):
     if created:

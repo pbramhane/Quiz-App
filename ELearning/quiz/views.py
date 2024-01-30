@@ -3,7 +3,10 @@ from django.contrib.auth.decorators import login_required
 from .models import Quiz, Category
 from django.db.models import Q
 from .models import QuizSubmission
+from account.models import Profile
 from django.contrib import messages
+from django.contrib.auth.models import User
+import razorpay
 
 # Create your views here.
 
@@ -73,3 +76,27 @@ def quiz_view(request, quiz_id):
     return render(request, 'quiz.html', context)
 
 
+def notes_view(request):
+
+    prem_users_object = Profile.objects.filter(is_premium=True)
+    
+
+    if request.user.is_authenticated and request.user.profile.is_premium:
+        return render(request, 'notes.html')
+    else:
+        client = razorpay.Client(auth=("rzp_test_J1OkBRgRlsXW8y", "qendIyZDFqTznlmVOp1XoGRR"))
+        amount= 500
+        payment = client.order.create({'amount': amount, 'currency': 'INR'})
+        
+        #user_object = User.objects.get(username=request.user)
+        user_profile = Profile.objects.filter(user=request.user).update(is_premium=True)
+        user_name = Profile.objects.filter(user=request.user)
+        #user_profile.update(is_premium=True)
+        context={
+            'amount': amount,
+            'user_name': user_name,
+            
+        }
+
+        return render(request, 'payment.html')
+    
