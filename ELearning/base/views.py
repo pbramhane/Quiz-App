@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from account.models import Profile
 from django.contrib.auth.models import User
 from django.db.models import Q
+from .models import Notes
 
 
 # Create your views here.

@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}Home | Quiz App{% endblock title %}
+{% block title %}Home | QuizWiz{% endblock title %}
 
   {% block content %}
   {% load static %}
 
   <div class="container text-center my-4">
-    <h1 class="display-5 fw-bold my-2">Welcome to eLearning</h1>
+    <h1 class="display-5 fw-bold my-2">Welcome to QuizWiz!</h1>
     <p class="fs-3">Unlock your genius: Bite-sized quizzes for big-time learning.</p>
   <div class="d-inline-flex gap-2 mb-5">
     <a href="{% url 'all_quiz' %}" class="d-inline-flex align-items-center btn btn-primary btn-lg px-4">
@@ -22,9 +22,11 @@
     </div>
 
     <div class="container text-center">
-      <h1 class="display-4 text-center my-5">Leaderboard</h1>
+      <h3>Leaderboard</h3>
+      <h1 class="display-4 text-center my-5">Top 3 Performers</h1>
+      
   
-      <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 mx-3">
+      <div class="row">
           {% if leaderboard_users|length == 0 %}
           <div class="col-lg-4 position-relative mb-4">
               <h4 class="text-center text-danger">No User Available on Leaderboard!!</h4>

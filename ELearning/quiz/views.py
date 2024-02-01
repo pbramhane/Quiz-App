@@ -4,6 +4,7 @@ from .models import Quiz, Category
 from django.db.models import Q
 from .models import QuizSubmission
 from account.models import Profile
+from base.models import Notes
 from django.contrib import messages
 from django.contrib.auth.models import User
 import razorpay
@@ -82,7 +83,13 @@ def notes_view(request):
     
 
     if request.user.is_authenticated and request.user.profile.is_premium:
-        return render(request, 'notes.html')
+        all_notes = Notes.objects.all()
+        context={
+            'all_notes': all_notes,
+            
+        }
+
+        return render(request, 'notes.html', context)
     else:
         client = razorpay.Client(auth=("rzp_test_J1OkBRgRlsXW8y", "qendIyZDFqTznlmVOp1XoGRR"))
         amount= 500
@@ -92,6 +99,8 @@ def notes_view(request):
         user_profile = Profile.objects.filter(user=request.user).update(is_premium=True)
         user_name = Profile.objects.filter(user=request.user)
         #user_profile.update(is_premium=True)
+        
+
         context={
             'amount': amount,
             'user_name': user_name,

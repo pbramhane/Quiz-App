@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}All Quizzes | Quiz App{% endblock title %}
+{% block title %}Notes | QuizWiz{% endblock title %}
 
   {% block content %}
   {% load static %}
@@ -8,6 +8,20 @@
 
 
   <h1 class="display-4 text-center my-5">Python Notes</h1>
+
+
+  {% for i in all_notes %}
+  <div class="questions my-4">
+      <div class="card mb-2 question">
+          <div class="card-header fw-bold">
+            {{ i.note_title }}
+          </div>
+          <div class="card-body">
+              <p class="card-text">{{ i.note_desc }}</p>
+          </div>
+        </div>
+        </div>
+        {% endfor %}
 
 
   {% endblock %}
